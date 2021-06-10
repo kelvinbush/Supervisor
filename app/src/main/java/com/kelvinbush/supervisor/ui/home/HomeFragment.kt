@@ -43,14 +43,16 @@ class HomeFragment : Fragment() {
             checkpoints.add(checkpoint)
             homeViewModel.saveExampleSchedule(schedule, checkpoints)
         }*/
-//        homeViewModel.getData().observe(viewLifecycleOwner, {
-//            var text = ""
-//            it.forEach { schedule -> text += schedule.toString() }
-//            binding.textView.text = text
-//            Log.d("onCreateView: ", text)
-//        })
+        /*homeViewModel.getData().observe(viewLifecycleOwner, {
+            var text = ""
+            it.forEach { schedule -> text += schedule.toString() }
+            binding.textView.text = text
+            Log.d("onCreateView: ", text)
+        })*/
 
         Log.d(TAG, "onCreateView: called")
+
+
 
         return root
     }

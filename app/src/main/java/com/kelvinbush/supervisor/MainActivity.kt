@@ -9,7 +9,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.kelvinbush.supervisor.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import android.graphics.drawable.ColorDrawable
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

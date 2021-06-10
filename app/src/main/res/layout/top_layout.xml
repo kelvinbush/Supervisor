@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="377dp"
+    android:layout_width="match_parent"
     android:layout_height="350dp"
     android:orientation="horizontal">
 
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="16dp"
-            android:layout_weight=".6"
+            android:layout_weight=".57"
             android:background="#f7608e"
             android:orientation="horizontal"
             tools:ignore="NestedWeights">
@@ -48,9 +48,10 @@
 
                 <TextView
                     android:id="@+id/textView2"
-                    android:layout_width="155dp"
-                    android:layout_height="72dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:lineSpacingExtra="10sp"
                     android:text="Create new schedule"
@@ -59,7 +60,7 @@
                     android:textStyle="bold"
                     android:typeface="monospace"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/imageView"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -69,7 +70,7 @@
             android:id="@+id/purpleLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".4"
+            android:layout_weight=".43"
             android:background="#9179fc"
             android:orientation="horizontal"
             tools:ignore="NestedWeights">
@@ -82,8 +83,8 @@
                     android:id="@+id/addingImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/adding" />
@@ -100,8 +101,9 @@
 
                 <TextView
                     android:id="@+id/addingCheckpoints"
-                    android:layout_width="155dp"
-                    android:layout_height="72dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:lineSpacingExtra="10sp"
@@ -111,7 +113,7 @@
                     android:textStyle="bold"
                     android:typeface="monospace"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/addingImage"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/addingImage" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -131,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="16dp"
-            android:layout_weight=".4"
+            android:layout_weight=".43"
             android:background="#ffc784"
             android:orientation="horizontal"
             tools:ignore="NestedWeights">
@@ -144,8 +146,8 @@
                     android:id="@+id/pendingImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/time" />
@@ -162,9 +164,10 @@
 
                 <TextView
                     android:id="@+id/pendingCheckpoints"
-                    android:layout_width="155dp"
-                    android:layout_height="72dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:lineSpacingExtra="10sp"
                     android:text="Pending Checkpoints"
@@ -173,7 +176,7 @@
                     android:textStyle="bold"
                     android:typeface="monospace"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/pendingImage"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/pendingImage" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
@@ -182,10 +185,11 @@
             android:id="@+id/blueishLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".6"
+            android:layout_weight=".57"
             android:background="#80e1fa"
             android:orientation="horizontal"
             tools:ignore="NestedWeights">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -212,9 +216,10 @@
 
                 <TextView
                     android:id="@+id/textViewComplete"
-                    android:layout_width="155dp"
-                    android:layout_height="72dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:lineSpacingExtra="10sp"
                     android:text="Complete checkpoints"
@@ -223,7 +228,7 @@
                     android:textStyle="bold"
                     android:typeface="monospace"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/completeImage"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/completeImage" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

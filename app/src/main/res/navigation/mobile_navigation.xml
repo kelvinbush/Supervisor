@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.kelvinbush.supervisor.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_createScheduleFragment"
+            app:destination="@id/createScheduleFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -22,4 +26,13 @@
         android:name="com.kelvinbush.supervisor.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/createScheduleFragment"
+        android:name="com.kelvinbush.supervisor.ui.create_schedhule.CreateScheduleFragment"
+        android:label="create_schedule_fragment"
+        tools:layout="@layout/create_schedule_fragment" >
+        <action
+            android:id="@+id/action_createScheduleFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>
