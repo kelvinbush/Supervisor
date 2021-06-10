@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.kelvinbush.supervisor.R
 import com.kelvinbush.supervisor.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,7 +54,11 @@ class HomeFragment : Fragment() {
 
         Log.d(TAG, "onCreateView: called")
 
-
+        val navController = this@HomeFragment.findNavController()
+        val createCard = binding.topLayout.pinkLayout
+        createCard.setOnClickListener {
+            navController.navigate(R.id.action_navigation_home_to_createScheduleFragment)
+        }
 
         return root
     }

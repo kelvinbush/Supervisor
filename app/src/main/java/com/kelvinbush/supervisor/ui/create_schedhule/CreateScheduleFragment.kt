@@ -27,7 +27,6 @@ class CreateScheduleFragment : Fragment() {
         navBar.visibility = View.GONE
 
         val navController = this@CreateScheduleFragment.findNavController()
-//        val includedView: View = binding
         return root
     }
 
