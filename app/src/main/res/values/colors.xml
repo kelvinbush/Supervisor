@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="back">#fcfbfe</color>
     <color name="pinky">#f76691</color>
+    <color name="status">#212438</color>
+    <color name="surface">#41455b</color>
 </resources>

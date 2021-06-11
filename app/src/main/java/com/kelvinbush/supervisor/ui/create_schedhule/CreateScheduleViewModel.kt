@@ -1,7 +1,9 @@
 package com.kelvinbush.supervisor.ui.create_schedhule
 
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 
-class CreateScheduleViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+
+@HiltViewModel
+class CreateScheduleViewModel  : ViewModel() {
 }

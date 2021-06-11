@@ -4,13 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/kelvin/Desktop/Dev/Supervisor/app/src/main/res/layout/activity_main.xml" value="0.21105072463768115" />
-        <entry key="..\:/Users/kelvin/Desktop/Dev/Supervisor/app/src/main/res/layout/create_schedule_fragment.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/kelvin/Desktop/Dev/Supervisor/app/src/main/res/layout/assignments_list_item.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/kelvin/Desktop/Dev/Supervisor/app/src/main/res/layout/create_schedule_fragment.xml" value="0.12396694214876033" />
         <entry key="..\:/Users/kelvin/Desktop/Dev/Supervisor/app/src/main/res/layout/fragment_dashboard.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/kelvin/Desktop/Dev/Supervisor/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/kelvin/Desktop/Dev/Supervisor/app/src/main/res/layout/pick_assignments_fragment.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/kelvin/Desktop/Dev/Supervisor/app/src/main/res/layout/regions_list_item.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/kelvin/Desktop/Dev/Supervisor/app/src/main/res/layout/topLayout.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/kelvin/Desktop/Dev/Supervisor/app/src/main/res/layout/top_layout.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/kelvin/Desktop/Dev/Supervisor/app/src/main/res/layout/toplayout.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/kelvin/Desktop/Dev/Supervisor/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22447916666666667" />
       </map>
     </option>
   </component>
@@ -19,5 +22,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.22447916666666667" />
+      </ProjectState>
+    </option>
   </component>
 </project>
