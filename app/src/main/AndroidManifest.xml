@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".SupervisorApplication"
-        android:theme="@style/Theme.Supervisor">
+        android:theme="@style/Theme.SupervisorTracker">
         <activity
             android:name=".MainActivity"
             android:exported="true"

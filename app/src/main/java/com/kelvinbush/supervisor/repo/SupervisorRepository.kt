@@ -22,9 +22,9 @@ class SupervisorRepository @Inject constructor(
 
     fun getRegionsWithAssignments(): List<Region> {
         val assignments = arrayListOf<Assignment>()
-        val assignment1 = Assignment("2234", "37.0154", "-1.0969", "50", "gatea")
-        val assignment2 = Assignment("7833", "36.9318", "-1.1876", "50", "maingate")
-        val assignment3 = Assignment("3333", "36.962167", "-0.395584", "50", "dekutmaingate")
+        val assignment1 = Assignment("2234", "37.0154", "-1.0969", "50", "gatea", false)
+        val assignment2 = Assignment("7833", "36.9318", "-1.1876", "50", "maingate", false)
+        val assignment3 = Assignment("3333", "36.962167", "-0.395584", "50", "dekutmaingate", false)
         assignments.add(assignment1)
         assignments.add(assignment3)
         return arrayListOf(

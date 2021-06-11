@@ -16,13 +16,16 @@ import com.kelvinbush.supervisor.databinding.CreateScheduleFragmentBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kelvinbush.supervisor.R
 import com.kelvinbush.supervisor.adapters.AssignmentsAdapter
+import com.kelvinbush.supervisor.domains.Assignment
 import com.kelvinbush.supervisor.domains.Region
 import dagger.hilt.android.AndroidEntryPoint
 
+private const val TAG = "CreateScheduleFragment"
 
 @AndroidEntryPoint
-class CreateScheduleFragment : Fragment(),
-    AdapterView.OnItemSelectedListener {
+class CreateScheduleFragment : Fragment(R.layout.create_schedule_fragment),
+    AdapterView.OnItemSelectedListener,
+    AssignmentsAdapter.OnItemClickListener {
 
     private var _binding: CreateScheduleFragmentBinding? = null
     private val binding get() = _binding!!
@@ -30,7 +33,7 @@ class CreateScheduleFragment : Fragment(),
     private var arrayAdapter: ArrayAdapter<String>? = null
     private val allRegions = arrayListOf<String>()
     private var assignmentRegions: List<Region>? = null
-    private val assignmentsAdapter = AssignmentsAdapter()
+    private val assignmentsAdapter = AssignmentsAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +50,9 @@ class CreateScheduleFragment : Fragment(),
 //        navController.navigateUp(appBarConfiguration)
 
         val layoutManager = LinearLayoutManager(requireContext())
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        binding.recyclerViewTasks.layoutManager = layoutManager
+        binding.recyclerViewTasks.adapter = assignmentsAdapter
 
         binding.routeSpinner.onItemSelectedListener = this@CreateScheduleFragment
 
@@ -64,11 +69,16 @@ class CreateScheduleFragment : Fragment(),
             )
             binding.routeSpinner.adapter = arrayAdapter
             assignmentRegions = it
-            Log.d("TAG", "onCreateView: $it")
 
         })
 
+        getCheckBoxValues()
+
         return root
+    }
+
+    private fun getCheckBoxValues() {
+
     }
 
     override fun onDestroyView() {
@@ -77,15 +87,25 @@ class CreateScheduleFragment : Fragment(),
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.d(TAG, "onItemSelected: called")
         getAssignmentsForRegion(position)
     }
 
     private fun getAssignmentsForRegion(i: Int) {
+        Log.d(TAG, "getAssignmentsForRegion: ${assignmentRegions?.get(i)?.assignments}")
         assignmentsAdapter.submitList(assignmentRegions?.get(i)?.assignments)
 
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onItemClick(assignment: Assignment) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCheckBoxClick(assignment: Assignment, isChecked: Boolean) {
         TODO("Not yet implemented")
     }
 }

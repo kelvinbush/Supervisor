@@ -11,5 +11,6 @@ data class Assignment(
     val longitude: String,
     val latitude: String,
     val geofenceRadius: String,
-    val assignmentName: String
+    val assignmentName: String,
+    val isChecked: Boolean
 )
