@@ -24,10 +24,10 @@ class HomeViewModel @Inject constructor(
 //
 //    }
 
-    fun getData(): LiveData<List<ScheduleWithCheckpoints>> {
+    /*fun getData(): LiveData<List<ScheduleWithCheckpoints>> {
         Log.d(TAG, "INIT: Called")
         return repository.allSchedules.asLiveData()
-    }
+    }*/
 
     fun saveExampleSchedule(schedule: Schedule, checkpoints: List<Checkpoint>) {
         Log.d(TAG, "saveExampleSchedule: called")

@@ -2,7 +2,6 @@ package com.kelvinbush.supervisor.di
 
 import android.content.Context
 import androidx.room.Room
-import com.kelvinbush.supervisor.database.SupervisorTrackDao
 import com.kelvinbush.supervisor.database.SupervisorTrackDb
 import dagger.Module
 import dagger.Provides
@@ -23,7 +22,7 @@ object AppModule {
         app,
         SupervisorTrackDb::class.java,
         "supervisor_tracking_db"
-    ).build()
+    ).fallbackToDestructiveMigration().build()
 
     @Singleton
     @Provides

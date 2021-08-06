@@ -7,42 +7,60 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kelvinbush.supervisor.databinding.AssignmentsListItemBinding
-import com.kelvinbush.supervisor.domains.Assignment
-import com.kelvinbush.supervisor.ui.create_schedhule.CreateScheduleFragment
+import com.kelvinbush.supervisor.database.Assignment
+
 
 private const val TAG = "AssignmentsAdapter"
 
 class AssignmentsAdapter(private val listener: OnItemClickListener) :
-    ListAdapter<Assignment, AssignmentsAdapter.ViewHolder>(AssignmentsDiffCallBack()) {
+    ListAdapter<Assignment, AssignmentsAdapter.AssignmentsViewHolder>(AssignmentsDiffCallBack()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AssignmentsViewHolder {
+        val binding =
+            AssignmentsListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return AssignmentsViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AssignmentsViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
     }
+
     interface OnItemClickListener {
         fun onItemClick(assignment: Assignment)
-        fun onCheckBoxClick(assignment: Assignment, isChecked: Boolean)
+        fun onCheckBoxClicked(assignment: Assignment, isChecked: Boolean)
     }
 
-    class ViewHolder private constructor(private val binding: AssignmentsListItemBinding) :
+    inner class AssignmentsViewHolder(private val binding: AssignmentsListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.apply {
+                root.setOnClickListener {
+                    val position = absoluteAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val assignment = getItem(position)
+                        listener.onItemClick(assignment)
+                    }
+                }
+
+                checkBox.setOnClickListener {
+                    val position = absoluteAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val assignment = getItem(position)
+                        listener.onCheckBoxClicked(assignment, checkBox.isChecked)
+                    }
+                }
+            }
+        }
+
+
         fun bind(item: Assignment) {
             Log.d(TAG, "bind: $item")
             binding.apply {
                 assignmentName.text = item.assignmentName
-                assignmentCode.text = item.uuid
-            }
-        }
-
-        companion object {
-            fun from(parent: ViewGroup): ViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = AssignmentsListItemBinding.inflate(layoutInflater, parent, false)
-                return ViewHolder(binding)
+                assignmentCode.text = item.id.toString()
+                checkBox.isChecked = item.isChosen
             }
         }
 
@@ -56,7 +74,7 @@ class AssignmentsDiffCallBack : DiffUtil.ItemCallback<Assignment>() {
     }
 
     override fun areContentsTheSame(oldItem: Assignment, newItem: Assignment): Boolean {
-        return oldItem.uuid == newItem.uuid
+        return oldItem.id == newItem.id
     }
 
 }

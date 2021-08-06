@@ -16,24 +16,29 @@ import com.kelvinbush.supervisor.databinding.CreateScheduleFragmentBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kelvinbush.supervisor.R
 import com.kelvinbush.supervisor.adapters.AssignmentsAdapter
-import com.kelvinbush.supervisor.domains.Assignment
-import com.kelvinbush.supervisor.domains.Region
+import com.kelvinbush.supervisor.database.Assignment
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 private const val TAG = "CreateScheduleFragment"
 
+enum class Region {
+    JKUAT,
+    KU,
+    KAHAWA
+}
+
 @AndroidEntryPoint
 class CreateScheduleFragment : Fragment(R.layout.create_schedule_fragment),
-    AdapterView.OnItemSelectedListener,
-    AssignmentsAdapter.OnItemClickListener {
+    AdapterView.OnItemSelectedListener, AssignmentsAdapter.OnItemClickListener {
 
     private var _binding: CreateScheduleFragmentBinding? = null
     private val binding get() = _binding!!
     private val viewModel: CreateScheduleViewModel by viewModels()
     private var arrayAdapter: ArrayAdapter<String>? = null
-    private val allRegions = arrayListOf<String>()
-    private var assignmentRegions: List<Region>? = null
-    private val assignmentsAdapter = AssignmentsAdapter(this)
+    private val allRegions = mutableSetOf<String>()
+    private var assignments: List<Assignment>? = null
+    private val assignmentsAdapter = AssignmentsAdapter(this@CreateScheduleFragment)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,36 +48,24 @@ class CreateScheduleFragment : Fragment(R.layout.create_schedule_fragment),
         val root: View = binding.root
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
         navBar.visibility = View.GONE
-
-        val navController = this@CreateScheduleFragment.findNavController()
-
-//        val appBarConfiguration = AppBarConfiguration(navController.graph)
-//        navController.navigateUp(appBarConfiguration)
-
+        Log.d(TAG, "onCreateView: called")
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.recyclerViewTasks.layoutManager = layoutManager
         binding.recyclerViewTasks.adapter = assignmentsAdapter
+        binding.recyclerViewTasks.itemAnimator = null
 
         binding.routeSpinner.onItemSelectedListener = this@CreateScheduleFragment
-
-        viewModel.regions.observe(viewLifecycleOwner, {
-            if (allRegions.isEmpty()) {
-                it.forEach { region ->
-                    allRegions.add(region.name)
-                }
-            }
-            arrayAdapter = ArrayAdapter(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                allRegions
-            )
-            binding.routeSpinner.adapter = arrayAdapter
-            assignmentRegions = it
-
-        })
+        arrayAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            arrayListOf(Region.KAHAWA.toString(), Region.JKUAT.toString(), Region.KU.toString())
+        )
+        binding.routeSpinner.adapter = arrayAdapter
 
         getCheckBoxValues()
+        initializeDb()
+
 
         return root
     }
@@ -81,21 +74,34 @@ class CreateScheduleFragment : Fragment(R.layout.create_schedule_fragment),
 
     }
 
+    private fun initializeDb() {
+        val assignmentList = arrayListOf(
+            Assignment(assignmentName = "Main Gate", region = Region.JKUAT.toString()),
+            Assignment(assignmentName = "Jkuat Hospital", region = Region.JKUAT.toString()),
+            Assignment(assignmentName = "Technology House", region = Region.JKUAT.toString()),
+            Assignment(assignmentName = "Chandaria House", region = Region.KU.toString()),
+            Assignment(assignmentName = "Chancellor's Towers", region = Region.KU.toString()),
+            Assignment(assignmentName = "Teaching hospital", region = Region.KU.toString()),
+            Assignment(assignmentName = "QuickMart", region = Region.KAHAWA.toString()),
+            Assignment(assignmentName = "MetroMart", region = Region.KAHAWA.toString()),
+            Assignment(assignmentName = "Seven Eleven", region = Region.KAHAWA.toString())
+        )
+        viewModel.insertAllAssignments(assignmentList)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        Log.d(TAG, "onItemSelected: called")
-        getAssignmentsForRegion(position)
+        viewModel.getAssignments(binding.routeSpinner.selectedItem.toString())
+            .observe(viewLifecycleOwner, {
+
+                assignmentsAdapter.submitList(it)
+            })
     }
 
-    private fun getAssignmentsForRegion(i: Int) {
-        Log.d(TAG, "getAssignmentsForRegion: ${assignmentRegions?.get(i)?.assignments}")
-        assignmentsAdapter.submitList(assignmentRegions?.get(i)?.assignments)
-
-    }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
         TODO("Not yet implemented")
@@ -105,7 +111,7 @@ class CreateScheduleFragment : Fragment(R.layout.create_schedule_fragment),
         TODO("Not yet implemented")
     }
 
-    override fun onCheckBoxClick(assignment: Assignment, isChecked: Boolean) {
-        TODO("Not yet implemented")
+    override fun onCheckBoxClicked(assignment: Assignment, isChecked: Boolean) {
+        viewModel.updateAssignments(assignment, isChecked)
     }
 }

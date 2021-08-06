@@ -10,8 +10,18 @@ interface SupervisorTrackDao {
     @Insert
     suspend fun addNewCheckpoints(checkpoints: List<Checkpoint>)
 
+    @Update
+    suspend fun updateAssignmentChecked(assignment: Assignment)
+
+    @Insert
+    suspend fun addAssignment(assignment: Assignment);
+
     @Insert
     suspend fun addNewSchedule(schedule: Schedule)
+
+    @Insert
+    suspend fun insertAllAssignments(assignments: List<Assignment>)
+
 
     @Transaction
     suspend fun addNewScheduleWithCheckpoints(schedule: Schedule, checkpoints: List<Checkpoint>) {
@@ -20,7 +30,11 @@ interface SupervisorTrackDao {
     }
 
     @Transaction
-    @Query("SELECT * FROM schedule ORDER BY id DESC")
-    fun getAllSchedulesWithCheckpoints(): Flow<List<ScheduleWithCheckpoints>>
+    @Query("select * from assignment where region = :region order by id")
+    fun getAllAssignments(region: String): Flow<List<Assignment>>
+
+    @Transaction
+    @Query("SELECT * FROM schedule ORDER BY id")
+    fun getAllSchedulesWithCheckpoints(): List<ScheduleWithCheckpoints>
 
 }

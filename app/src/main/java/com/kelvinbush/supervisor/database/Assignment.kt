@@ -4,12 +4,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Checkpoint(
+data class Assignment(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
+//    val uuid: String,
+//    val longitude: String,
+//    val latitude: String,
+//    val geofenceRadius: String,
     val assignmentName: String,
-    val latitude: String,
-    val longitude: String,
-    val radius: String,
-    val state: State,
-    val date: String
+    val isChosen: Boolean = false,
+    val region: String
 )
